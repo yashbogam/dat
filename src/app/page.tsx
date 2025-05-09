@@ -53,20 +53,6 @@ export const metadata: Metadata = {
   }
 };
 
-// Client Components
-const HomePage = () => {
-  return (
-    <PageWrapper>
-      <div className="bg-black overflow-hidden">
-        {/* Rest of the component content */}
-      </div>
-    </PageWrapper>
-  );
-};
-
-export default function Home() {
-  return <HomePage />;
-}
 // Dynamically import components
 const AnimatedTestimonials = dynamic(() => import("@/components/ui/animated-testimonials").then(mod => mod.AnimatedTestimonials), {
   loading: () => <p>Loading testimonials...</p>,
