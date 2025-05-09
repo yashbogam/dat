@@ -86,17 +86,14 @@ interface MobileNavMenuProps {
 export const Navbar = ({ children, className }: NavbarProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   
-  // Use the bounded scroll hook with a threshold of 200 pixels
   const { scrollYBoundedProgress } = useBoundedScroll(200);
   
-  // Create a smooth spring animation from the bounded scroll progress
   const scrollProgress = useSpring(scrollYBoundedProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
 
-  // Set visible state based on scroll position
   useMotionValueEvent(scrollProgress, "change", (latest) => {
     if (latest > 0.05) {
       setVisible(true);
@@ -122,11 +119,9 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 };
 
 export const NavBody = ({ children, className, visible, scrollProgress }: NavBodyProps) => {
-  // Create a default motion value for when scrollProgress is not provided
   const defaultScrollProgress = useMotionValue(0);
   const effectiveScrollProgress = scrollProgress || defaultScrollProgress;
   
-  // Transform scrollProgress into different properties with more natural breakpoints
   const width = useTransform(
     effectiveScrollProgress, 
     [0, 0.25, 0.5, 0.75, 1], 
@@ -193,7 +188,7 @@ export const NavBody = ({ children, className, visible, scrollProgress }: NavBod
   );
 };
 
-export const NavItems = memo(({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = memo(({ items, className }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
@@ -205,9 +200,8 @@ export const NavItems = memo(({ items, className, onItemClick }: NavItemsProps) 
       )}
     >
       {items.map((item, idx) => (
-        <a
+        <Link
           onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
           className="relative px-4 py-2 text-gray-300 hover:text-white dark:text-gray-300"
           key={`link-${idx}`}
           href={item.link}
@@ -219,7 +213,7 @@ export const NavItems = memo(({ items, className, onItemClick }: NavItemsProps) 
             />
           )}
           <span className="relative z-20">{item.name}</span>
-        </a>
+        </Link>
       ))}
     </motion.div>
   );
@@ -227,11 +221,9 @@ export const NavItems = memo(({ items, className, onItemClick }: NavItemsProps) 
 NavItems.displayName = 'NavItems';
 
 export const MobileNav = ({ children, className, visible, scrollProgress }: MobileNavProps) => {
-  // Create a default motion value for when scrollProgress is not provided
   const defaultScrollProgress = useMotionValue(0);
   const effectiveScrollProgress = scrollProgress || defaultScrollProgress;
   
-  // Transform scrollProgress into different properties with more natural breakpoints
   const width = useTransform(
     effectiveScrollProgress, 
     [0, 0.5, 1], 
@@ -365,8 +357,7 @@ MobileNavToggle.displayName = 'MobileNavToggle';
 
 export const NavbarLogo = memo(() => {
   return (
-    <a href="/" className="flex items-center space-x-2">
-      {/* Replace with your actual logo SVG or Image component */}
+    <Link href="/" className="flex items-center space-x-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -376,7 +367,7 @@ export const NavbarLogo = memo(() => {
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
       </svg>
       <span className="text-xl font-bold text-white">DataMaster</span>
-    </a>
+    </Link>
   );
 });
 NavbarLogo.displayName = 'NavbarLogo';
