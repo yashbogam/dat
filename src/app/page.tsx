@@ -1,8 +1,7 @@
-'use client';
-
 import React from "react";
 import dynamic from "next/dynamic";
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { HeroHeading } from "@/components/ui/hero-heading";
 import { CustomHoverButton } from "@/components/ui/custom-hover-button";
@@ -26,6 +25,48 @@ import {
 import { cn } from "@/lib/utils";
 import { PageWrapper } from "@/components/ui/page-wrapper";
 
+export const metadata: Metadata = {
+  title: "DataMaster - Medical Research Platform",
+  description: "Access high-quality healthcare data to accelerate your research, analytics, and ML projects.",
+  openGraph: {
+    title: "DataMaster - Advancing Medical Research",
+    description: "High-quality healthcare data, analytics, and ML projects.",
+    images: [
+      {
+        url: '/api/og',
+        width: 1200,
+        height: 630,
+        alt: 'DataMaster Social Card',
+      },
+    ],
+    type: 'website',
+    siteName: 'DataMaster',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "DataMaster - Advancing Medical Research",
+    description: "High-quality healthcare data, analytics, and ML projects.",
+    images: ['/api/og'],
+  },
+  other: {
+    'preconnect': 'https://images.unsplash.com',
+  }
+};
+
+// Client Components
+const HomePage = () => {
+  return (
+    <PageWrapper>
+      <div className="bg-black overflow-hidden">
+        {/* Rest of the component content */}
+      </div>
+    </PageWrapper>
+  );
+};
+
+export default function Home() {
+  return <HomePage />;
+}
 // Dynamically import components
 const AnimatedTestimonials = dynamic(() => import("@/components/ui/animated-testimonials").then(mod => mod.AnimatedTestimonials), {
   loading: () => <p>Loading testimonials...</p>,
