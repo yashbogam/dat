@@ -2,7 +2,6 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
-import { Metadata } from 'next';
 import Link from 'next/link';
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { HeroHeading } from "@/components/ui/hero-heading";
@@ -26,48 +25,6 @@ import {
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { PageWrapper } from "@/components/ui/page-wrapper";
-
-// Generate Open Graph metadata
-export async function generateMetadata(): Promise<Metadata> {
-  const pageTitle = "Accelerate Your Medical Research with DataMaster";
-  const ogImageUrl = `/api/og?title=${encodeURIComponent(pageTitle)}`;
-  
-  let baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  if (!baseUrl) {
-    baseUrl = process.env.NODE_ENV === 'development' 
-      ? 'http://localhost:3000' 
-      : 'https://datamaster.vercel.app';
-  }
-
-  return {
-    title: "DataMaster - Medical Research Platform",
-    description: "Access high-quality healthcare data to accelerate your research, analytics, and ML projects.",
-    metadataBase: new URL(baseUrl),
-    openGraph: {
-      title: "DataMaster - Advancing Medical Research",
-      description: "High-quality healthcare data, analytics, and ML projects.",
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: 'DataMaster Social Card',
-        },
-      ],
-      type: 'website',
-      siteName: 'DataMaster',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: "DataMaster - Advancing Medical Research",
-      description: "High-quality healthcare data, analytics, and ML projects.",
-      images: [ogImageUrl],
-    },
-    other: {
-      'preconnect': 'https://images.unsplash.com',
-    }
-  };
-}
 
 // Dynamically import components
 const AnimatedTestimonials = dynamic(() => import("@/components/ui/animated-testimonials").then(mod => mod.AnimatedTestimonials), {
@@ -339,10 +296,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Rest of the component remains unchanged */}
-        
-        {/* Footer section and other components remain the same */}
       </div>
     </PageWrapper>
   );

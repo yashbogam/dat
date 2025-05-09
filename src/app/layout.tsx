@@ -1,36 +1,41 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "DataMaster",
-  description: "Your complete solution for data management and visualization",
-};
+  title: "DataMaster - Medical Research Platform",
+  description: "Access high-quality healthcare data to accelerate your research, analytics, and ML projects.",
+  openGraph: {
+    title: "DataMaster - Advancing Medical Research",
+    description: "High-quality healthcare data, analytics, and ML projects.",
+    images: [
+      {
+        url: '/api/og',
+        width: 1200,
+        height: 630,
+        alt: 'DataMaster Social Card',
+      },
+    ],
+    type: 'website',
+    siteName: 'DataMaster',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "DataMaster - Advancing Medical Research",
+    description: "High-quality healthcare data, analytics, and ML projects.",
+    images: ['/api/og'],
+  },
+  other: {
+    'preconnect': 'https://images.unsplash.com',
+  }
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
-      >
-        <main>
-          {children}
-        </main>
-      </body>
+      <body>{children}</body>
     </html>
-  );
+  )
 }
