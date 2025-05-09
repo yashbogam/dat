@@ -1,6 +1,9 @@
+'use client';
+
 import React from "react";
 import dynamic from "next/dynamic";
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { HeroHeading } from "@/components/ui/hero-heading";
 import { CustomHoverButton } from "@/components/ui/custom-hover-button";
@@ -300,26 +303,26 @@ export default function Home() {
       <div className="bg-black overflow-hidden">
         {/* Previous sections remain unchanged */}
         
-        {/* Modified Simple Card Section to avoid nested links */}
+        {/* Modified Simple Card Section to use Next.js Link */}
         <section className="bg-black pt-0 -mt-1">
           <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
             <h2 className="text-4xl font-medium text-center mb-12 text-white">Our Services</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto py-10">
               {cardItems.map((item, idx) => (
-                <div 
+                <Link 
                   key={`service-card-${idx}`}
-                  onClick={() => window.location.href = item.link}
+                  href={item.link}
                   className="rounded-2xl h-full w-full p-8 overflow-hidden bg-black border border-neutral-800 hover:border-neutral-700 transition-all duration-200 cursor-pointer"
                 >
                   <h4 className="text-xl font-semibold text-white mb-4">{item.title}</h4>
                   <p className="text-neutral-400 leading-relaxed">{item.description}</p>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Modified Link Preview Section to avoid nested links */}
+        {/* Modified Link Preview Section */}
         <div className="bg-black flex justify-center">
           <div className="text-center">
             <p className="text-white/60 text-sm mb-2">Developed by</p>
