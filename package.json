@@ -3,15 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bun next dev",
-    "dev:turbo": "bun next dev --turbopack",
-    "dev:bun": "bun next dev",
-    "build": "bun next build",
-    "build:bun": "bun next build",
-    "start": "bun next start",
-    "start:bun": "bun next start",
-    "lint": "bun next lint",
-    "verify": "bun --version"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-hover-card": "^1.1.13",
